@@ -1,0 +1,7 @@
+PAO DE QUEIJO;FACIL;04/05/2021 20:23:22
+churrasco;facil;03/06/2021 01:45:23
+bolo de cenoura;facil;03/06/2021 02:08:44
+canjica;medio;03/06/2021 02:16:10
+feijoada;media;03/06/2021 03:15:42
+macarronada;facil;03/06/2021 03:30:32
+pudim;facil;03/06/2021 03:30:32
