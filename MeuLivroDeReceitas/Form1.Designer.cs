@@ -30,12 +30,15 @@ namespace MeuLivroDeReceitas
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
-            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
+            this.txtDescricao = new System.Windows.Forms.TextBox();
             this.btnincluir = new System.Windows.Forms.Button();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.txtDificuldade = new System.Windows.Forms.TextBox();
             this.txtReceita = new System.Windows.Forms.TextBox();
             this.grid = new System.Windows.Forms.DataGridView();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grid)).BeginInit();
             this.SuspendLayout();
@@ -43,7 +46,10 @@ namespace MeuLivroDeReceitas
             // panel1
             // 
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.panel1.Controls.Add(this.richTextBox1);
+            this.panel1.Controls.Add(this.label3);
+            this.panel1.Controls.Add(this.label2);
+            this.panel1.Controls.Add(this.label1);
+            this.panel1.Controls.Add(this.txtDescricao);
             this.panel1.Controls.Add(this.btnincluir);
             this.panel1.Controls.Add(this.dateTimePicker1);
             this.panel1.Controls.Add(this.txtDificuldade);
@@ -55,17 +61,16 @@ namespace MeuLivroDeReceitas
             this.panel1.TabIndex = 1;
             this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             // 
-            // richTextBox1
+            // txtDescricao
             // 
-            this.richTextBox1.Location = new System.Drawing.Point(80, 54);
-            this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(464, 117);
-            this.richTextBox1.TabIndex = 4;
-            this.richTextBox1.Text = "";
+            this.txtDescricao.Location = new System.Drawing.Point(80, 57);
+            this.txtDescricao.Name = "txtDescricao";
+            this.txtDescricao.Size = new System.Drawing.Size(464, 23);
+            this.txtDescricao.TabIndex = 4;
             // 
             // btnincluir
             // 
-            this.btnincluir.Location = new System.Drawing.Point(99, 177);
+            this.btnincluir.Location = new System.Drawing.Point(10, 157);
             this.btnincluir.Name = "btnincluir";
             this.btnincluir.Size = new System.Drawing.Size(124, 37);
             this.btnincluir.TabIndex = 3;
@@ -75,24 +80,26 @@ namespace MeuLivroDeReceitas
             // 
             // dateTimePicker1
             // 
-            this.dateTimePicker1.Location = new System.Drawing.Point(397, 7);
+            this.dateTimePicker1.Location = new System.Drawing.Point(408, 9);
             this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(147, 23);
+            this.dateTimePicker1.Size = new System.Drawing.Size(136, 23);
             this.dateTimePicker1.TabIndex = 2;
             // 
             // txtDificuldade
             // 
-            this.txtDificuldade.Location = new System.Drawing.Point(272, 7);
+            this.txtDificuldade.Location = new System.Drawing.Point(301, 10);
             this.txtDificuldade.Name = "txtDificuldade";
             this.txtDificuldade.Size = new System.Drawing.Size(101, 23);
             this.txtDificuldade.TabIndex = 1;
+            this.txtDificuldade.TextChanged += new System.EventHandler(this.txtDificuldade_TextChanged);
             // 
             // txtReceita
             // 
-            this.txtReceita.Location = new System.Drawing.Point(80, 7);
+            this.txtReceita.Location = new System.Drawing.Point(70, 10);
             this.txtReceita.Name = "txtReceita";
-            this.txtReceita.Size = new System.Drawing.Size(152, 23);
+            this.txtReceita.Size = new System.Drawing.Size(176, 23);
             this.txtReceita.TabIndex = 0;
+            this.txtReceita.TextChanged += new System.EventHandler(this.txtReceita_TextChanged);
             // 
             // grid
             // 
@@ -102,6 +109,37 @@ namespace MeuLivroDeReceitas
             this.grid.RowTemplate.Height = 25;
             this.grid.Size = new System.Drawing.Size(546, 150);
             this.grid.TabIndex = 2;
+            this.grid.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grid_CellClick);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(10, 13);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(54, 15);
+            this.label1.TabIndex = 5;
+            this.label1.Text = "Receita : ";
+            this.label1.Click += new System.EventHandler(this.label1_Click);
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(252, 15);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(43, 15);
+            this.label2.TabIndex = 6;
+            this.label2.Text = "Tempo";
+            this.label2.Click += new System.EventHandler(this.label2_Click);
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(10, 57);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(64, 15);
+            this.label3.TabIndex = 7;
+            this.label3.Text = "Descriçâo :";
+            this.label3.Click += new System.EventHandler(this.label3_Click);
             // 
             // FormPrincipal
             // 
@@ -127,8 +165,11 @@ namespace MeuLivroDeReceitas
         private System.Windows.Forms.Button btnincluir;
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
         private System.Windows.Forms.TextBox txtDificuldade;
-        private System.Windows.Forms.RichTextBox richTextBox1;
         private System.Windows.Forms.DataGridView grid;
+        private System.Windows.Forms.TextBox txtDescricao;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label3;
     }
 }
 
