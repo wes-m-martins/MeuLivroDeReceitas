@@ -30,14 +30,17 @@ namespace MeuLivroDeReceitas
 
         private void btnincluir_Click(object sender, EventArgs e)
         {
-            Receita receita = new Receita(txtReceita.Text, txtDificuldade.Text, txtDescricao.Text, dateTimePicker1.Value);
+            
+            string comofazer = txtDescricao.Text.Replace("\n", "&");
+            Receita receita = new Receita(txtReceita.Text, txtDificuldade.Text, comofazer, dateTimePicker1.Value);
             listaReceitas.Add(receita);
             grid.DataSource = null;
             grid.DataSource = listaReceitas;
 
+
             using (StreamWriter writer = new StreamWriter("C:/Users/Aluno/source/repos/MeuLivroDeReceitas/MeuLivroDeReceitas/receitas.txt", true))
             {
-                writer.WriteLine(txtReceita.Text + ";" + txtDificuldade.Text + ";" + txtDescricao.Text + ";"+ dateTimePicker1.Value);
+                writer.WriteLine(txtReceita.Text + ";" + txtDificuldade.Text + ";" + comofazer + ";"+ dateTimePicker1.Value + "|");
                 writer.Close();                
             }
         }
@@ -56,10 +59,11 @@ namespace MeuLivroDeReceitas
 
 
                while ((linhas = leitor.ReadLine()) != null)
-               {
-                    string[] linhaarquivo = linhas.Split(';');
-                    listaReceitas.Add(new Receita(linhaarquivo[0], linhaarquivo[1], linhaarquivo[2], Convert.ToDateTime(linhaarquivo[3])));
-
+               {           
+                                   
+                        string[] linhaarquivo = linhas.Split(';');
+                        listaReceitas.Add(new Receita(linhaarquivo[0], linhaarquivo[1], linhaarquivo[2].Replace("&","\n"), Convert.ToDateTime(linhaarquivo[3])));
+                    
                }
                grid.DataSource = listaReceitas;
             }
@@ -108,6 +112,16 @@ namespace MeuLivroDeReceitas
         private void label3_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void richTextBox1_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnApagar_Click(object sender, EventArgs e)
+        {
+            listaReceitas.Remove(Receita);
         }
     }
 }

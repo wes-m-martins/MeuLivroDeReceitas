@@ -24,7 +24,7 @@ namespace MeuLivroDeReceitas
         }
         public override string ToString()
         {
-            string retorno = this.Nome + ";" + this.Dificuldade + ";" + this.Descricao + ";" + this.DataCadastro;
+            string retorno = this.Nome + ";" + this.Dificuldade + ";" + this.Descricao + ";" + this.DataCadastro + "|";
             return retorno;
 
         }

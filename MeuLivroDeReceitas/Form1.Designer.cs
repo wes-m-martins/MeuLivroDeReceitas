@@ -30,15 +30,16 @@ namespace MeuLivroDeReceitas
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
-            this.txtDescricao = new System.Windows.Forms.TextBox();
+            this.txtDescricao = new System.Windows.Forms.RichTextBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
             this.btnincluir = new System.Windows.Forms.Button();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.txtDificuldade = new System.Windows.Forms.TextBox();
             this.txtReceita = new System.Windows.Forms.TextBox();
             this.grid = new System.Windows.Forms.DataGridView();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
+            this.btnApagar = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grid)).BeginInit();
             this.SuspendLayout();
@@ -46,10 +47,11 @@ namespace MeuLivroDeReceitas
             // panel1
             // 
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.panel1.Controls.Add(this.btnApagar);
+            this.panel1.Controls.Add(this.txtDescricao);
             this.panel1.Controls.Add(this.label3);
             this.panel1.Controls.Add(this.label2);
             this.panel1.Controls.Add(this.label1);
-            this.panel1.Controls.Add(this.txtDescricao);
             this.panel1.Controls.Add(this.btnincluir);
             this.panel1.Controls.Add(this.dateTimePicker1);
             this.panel1.Controls.Add(this.txtDificuldade);
@@ -63,10 +65,42 @@ namespace MeuLivroDeReceitas
             // 
             // txtDescricao
             // 
-            this.txtDescricao.Location = new System.Drawing.Point(80, 57);
+            this.txtDescricao.Location = new System.Drawing.Point(70, 55);
             this.txtDescricao.Name = "txtDescricao";
-            this.txtDescricao.Size = new System.Drawing.Size(464, 23);
-            this.txtDescricao.TabIndex = 4;
+            this.txtDescricao.Size = new System.Drawing.Size(474, 96);
+            this.txtDescricao.TabIndex = 8;
+            this.txtDescricao.Text = "";
+            this.txtDescricao.TextChanged += new System.EventHandler(this.richTextBox1_TextChanged);
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(10, 58);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(64, 15);
+            this.label3.TabIndex = 7;
+            this.label3.Text = "Descriçâo :";
+            this.label3.Click += new System.EventHandler(this.label3_Click);
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(252, 15);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(43, 15);
+            this.label2.TabIndex = 6;
+            this.label2.Text = "Tempo";
+            this.label2.Click += new System.EventHandler(this.label2_Click);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(10, 13);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(54, 15);
+            this.label1.TabIndex = 5;
+            this.label1.Text = "Receita : ";
+            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // btnincluir
             // 
@@ -111,35 +145,15 @@ namespace MeuLivroDeReceitas
             this.grid.TabIndex = 2;
             this.grid.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grid_CellClick);
             // 
-            // label1
+            // btnApagar
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(10, 13);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(54, 15);
-            this.label1.TabIndex = 5;
-            this.label1.Text = "Receita : ";
-            this.label1.Click += new System.EventHandler(this.label1_Click);
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(252, 15);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(43, 15);
-            this.label2.TabIndex = 6;
-            this.label2.Text = "Tempo";
-            this.label2.Click += new System.EventHandler(this.label2_Click);
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(10, 57);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(64, 15);
-            this.label3.TabIndex = 7;
-            this.label3.Text = "Descriçâo :";
-            this.label3.Click += new System.EventHandler(this.label3_Click);
+            this.btnApagar.Location = new System.Drawing.Point(350, 157);
+            this.btnApagar.Name = "btnApagar";
+            this.btnApagar.Size = new System.Drawing.Size(136, 36);
+            this.btnApagar.TabIndex = 9;
+            this.btnApagar.Text = "Apagar Receita";
+            this.btnApagar.UseVisualStyleBackColor = true;
+            this.btnApagar.Click += new System.EventHandler(this.btnApagar_Click);
             // 
             // FormPrincipal
             // 
@@ -166,10 +180,12 @@ namespace MeuLivroDeReceitas
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
         private System.Windows.Forms.TextBox txtDificuldade;
         private System.Windows.Forms.DataGridView grid;
-        private System.Windows.Forms.TextBox txtDescricao;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.RichTextBox richTextBox1;
+        private System.Windows.Forms.RichTextBox txtDescricao;
+        private System.Windows.Forms.Button btnApagar;
     }
 }
 

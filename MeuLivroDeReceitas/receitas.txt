@@ -1,6 +1,4 @@
-
-CHURRASCO;40 MINUTOS;ASSAR CARNE;01/06/2021 20:02:59
-CANJICA;45 MINUTOS;COZINHAR O MILHO NA PANELA DE PRESSÃO ;01/06/2021 20:02:59
-GALINHADA;40 MINUTOS;REFOGAR O FRANGO, DEPOIS O ARROZ E COZINHAR JUNTOS;02/06/2021 20:02:59
-FEIJOADA;40 MINUTOS;REFOGAR O FRANGO, DEPOIS O ARROZ E COZINHAR JUNTOS;02/06/2021 20:02:59
-paella;50 minutos;varios frutos do mar;05/06/2021 20:07:54
+feijoada;120;cozinha porco&cozinha feijao&mistura tudo;15/06/2021 01:19:31
+pudim;45;bate ovos&mistura leite&assar banho maria;15/06/2021 01:19:31
+pudim;45;bate ovos&mistura leite&assar banho maria;15/06/2021 01:19:31
+feijao gordo;60;cozinha feijao&adiciona bacon&adiciona linguiça;15/06/2021 01:19:31
