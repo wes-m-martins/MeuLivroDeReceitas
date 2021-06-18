@@ -10,21 +10,23 @@ namespace MeuLivroDeReceitas
     public class Receita
     {
         public string Nome { get; set; }
-        public string Dificuldade { get; set; }
+        public string TempoPreparo {get; set; }
         public string Descricao { get; set; }
         public DateTime DataCadastro { get; set; }
+        public DateTime DataAtualizacao { get; set; }
 
-    
-        public Receita (string nome, string nivel, string descricao, DateTime data)
+
+        public Receita (string nome, string tempoprep, string descricao, DateTime datacad, DateTime dataat)
         {
             Nome = nome;
-            Dificuldade = nivel;
+            TempoPreparo = tempoprep;
             Descricao = descricao;
-            DataCadastro = data;
+            DataCadastro = datacad;
+            DataAtualizacao = dataat;
         }
         public override string ToString()
         {
-            string retorno = this.Nome + ";" + this.Dificuldade + ";" + this.Descricao + ";" + this.DataCadastro + "|";
+            string retorno = this.Nome + ";" + this.TempoPreparo + ";" + this.Descricao + ";" + this.DataCadastro + ";" + this.DataAtualizacao;
             return retorno;
 
         }

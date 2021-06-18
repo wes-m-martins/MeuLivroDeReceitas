@@ -1,4 +1,0 @@
-feijoada;120;cozinha porco&cozinha feijao&mistura tudo;15/06/2021 01:19:31
-pudim;45;bate ovos&mistura leite&assar banho maria;15/06/2021 01:19:31
-pudim;45;bate ovos&mistura leite&assar banho maria;15/06/2021 01:19:31
-feijao gordo;60;cozinha feijao&adiciona bacon&adiciona linguiça;15/06/2021 01:19:31

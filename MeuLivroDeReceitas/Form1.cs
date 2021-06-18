@@ -20,19 +20,12 @@ namespace MeuLivroDeReceitas
         private List<Receita> listaReceitas = new List<Receita>();
        
 
-        private void panel1_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
        
-
-
         private void btnincluir_Click(object sender, EventArgs e)
         {
             
             string comofazer = txtDescricao.Text.Replace("\n", "&");
-            Receita receita = new Receita(txtReceita.Text, txtDificuldade.Text, comofazer, dateTimePicker1.Value);
+            Receita receita = new Receita(txtReceita.Text, txtTempo.Text, comofazer, dateTimeCria.Value, dateTimeAtu.Value);
             listaReceitas.Add(receita);
             grid.DataSource = null;
             grid.DataSource = listaReceitas;
@@ -40,15 +33,12 @@ namespace MeuLivroDeReceitas
 
             using (StreamWriter writer = new StreamWriter("C:/Users/Aluno/source/repos/MeuLivroDeReceitas/MeuLivroDeReceitas/receitas.txt", true))
             {
-                writer.WriteLine(txtReceita.Text + ";" + txtDificuldade.Text + ";" + comofazer + ";"+ dateTimePicker1.Value + "|");
+                writer.WriteLine(txtReceita.Text + ";" + txtTempo.Text + ";" + comofazer + ";"+ dateTimeCria.Value + ";" + dateTimeAtu.Value);
                 writer.Close();                
             }
         }
 
-        private void FormPrincipal_Load(object sender, EventArgs e)
-        {
-            
-        }
+        
 
         private void FormPrincipal_Shown(object sender, EventArgs e)
         {
@@ -62,7 +52,7 @@ namespace MeuLivroDeReceitas
                {           
                                    
                         string[] linhaarquivo = linhas.Split(';');
-                        listaReceitas.Add(new Receita(linhaarquivo[0], linhaarquivo[1], linhaarquivo[2].Replace("&","\n"), Convert.ToDateTime(linhaarquivo[3])));
+                        listaReceitas.Add(new Receita(linhaarquivo[0], linhaarquivo[1], linhaarquivo[2].Replace("&","\n"), Convert.ToDateTime(linhaarquivo[3]), Convert.ToDateTime(linhaarquivo[4])));
                     
                }
                grid.DataSource = listaReceitas;
@@ -70,58 +60,70 @@ namespace MeuLivroDeReceitas
 
         }
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-            
-        }
-
+       
         private void grid_CellClick(object sender, DataGridViewCellEventArgs e)
         {
+            btnIncluir.Enabled = false;
+            btnApagar.Enabled = true;
+            btnSalvar.Enabled = true;
             var resposta = MessageBox.Show("Você quer visualizar a receita selecionada?", "Confirmação", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
             if (resposta == DialogResult.Yes)
             {
                 var registro = listaReceitas.Find(x => x.Nome == (grid.Rows[e.RowIndex].Cells[0].Value.ToString()));
                 txtReceita.Text = registro.Nome;
-                txtDificuldade.Text = registro.Dificuldade;
+                txtTempo.Text = registro.TempoPreparo;
                 txtDescricao.Text = registro.Descricao;
-                dateTimePicker1.Text = registro.DataCadastro.ToString();
+                dateTimeCria.Text = registro.DataCadastro.ToString();
+                dateTimeCria.Text = registro.DataAtualizacao.ToString();
             }
             
         }
 
-        private void label1_Click(object sender, EventArgs e)
-        {
+       
 
-        }
+       
 
-        private void label2_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void txtDificuldade_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void txtReceita_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label3_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void richTextBox1_TextChanged(object sender, EventArgs e)
-        {
-
-        }
+       
 
         private void btnApagar_Click(object sender, EventArgs e)
         {
-            listaReceitas.Remove(Receita);
+            var resposta = MessageBox.Show("Você quer apagar a receita selecionada?", "Confirmação", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
+            if (resposta == DialogResult.Yes)
+            {
+                Receita registro = listaReceitas.Find(x => x.Nome == txtReceita.Text);
+                listaReceitas.Remove(registro);
+                grid.DataSource = null;
+                grid.DataSource = listaReceitas;
+                txtReceita.Text = " ";
+                txtTempo.Text = " ";
+                txtDescricao.Text = " ";
+                
+            }
+            btnIncluir.Enabled = true;
+            btnSalvar.Enabled = false;
+            this.Enabled = false;
+        }
+
+       
+
+       
+
+        private void btnSalvar_Click(object sender, EventArgs e)
+        {
+
+            if (this.Enabled == true) {
+                btnIncluir.Enabled = true;
+                btnApagar.Enabled = true;
+                var resposta = MessageBox.Show("Você quer salvar a receita ?", "Confirmação", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
+                if (resposta == DialogResult.Yes)
+                {
+                    Receita registro = listaReceitas.Find(x => x.Nome == txtReceita.Text);
+                    listaReceitas.Remove(registro);
+                    btnIncluir.PerformClick();
+                }
+            }
+            else
+                MessageBox.Show("Você tem que selecionar alguma receita para depois salvar a alteração", "Aviso", MessageBoxButtons.OK);
         }
     }
 }
